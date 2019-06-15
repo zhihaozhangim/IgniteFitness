@@ -1,4 +1,20 @@
-# FitnessTracker
+# IgniteFitness
+
+##### A real-time fitness application for users to take various kinds of exercises with instructions and view exercise history
+
+- Built a dynamic user interface that reacts to device screen sizes using Angular and Angular Material
+
+- Utilized Firebase as real-time database for the storage and sync of exercise information and user authentication, using AngularFire to interact with Firebase and monitor authentication state
+
+- Deployed the single page application to Firebase Hosting, implementing lazy loading to faster boot time
+
+
+
+[URL](https://fitness-tracker-47d8a.web.app/)
+
+---
+
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.2.
 
