@@ -1,0 +1,31 @@
+<mat-toolbar color="primary">
+    <!-- The button will hide on devices with size > xs -->
+    <div fxHide.gt-xs>
+      <!-- (click)="onToggleSidenav() -> control side nav bar -->
+      <button mat-icon-button (click)="onToggleSidenav()">
+      <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+    <div><a routerLink="/">Ignite Fitness</a></div>
+    <!-- fxHide.xs -> will hide on very small device -->
+    <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+      <ul fxLayout fxLayoutGap="10px" class="navigation-items">
+
+        <!-- Only shows when the user is not logged in. -->
+        <li *ngIf="!isAuth">
+          <a routerLink="/signup">Signup</a>
+        </li>
+        <li *ngIf="!isAuth">
+          <a routerLink="/login">Login</a>
+        </li>
+
+        <!-- Only shows when the user is logged in. -->
+        <li *ngIf="isAuth">
+          <a routerLink="/training">Training</a>
+        </li>
+        <li *ngIf="isAuth">
+          <a style="cursor: pointer" (click)="onLogout()">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </mat-toolbar>

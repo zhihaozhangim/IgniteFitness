@@ -1,0 +1,19 @@
+<mat-sidenav-container>
+  <!-- #sidenav is a local reference -->
+  <mat-sidenav #sidenav role="navigation">
+    <!-- (closeSidenav)="sidenav.close() means when an event is heard from
+          app-sidenav-list, the sidenav will be closed -->
+    <app-sidenav-list (closeSidenav)="sidenav.close()"></app-sidenav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <!-- (sideNavToggle)="sidenav.toggle()" means when we get an event from
+          app-header, sidenav.toggle() will be called. It is a multi-components communication -->
+    <app-header (sideNavToggle)="sidenav.toggle()"></app-header>
+    <main>
+        <!-- selector provided by RouteModule, tell angular where to put the loaded components -->
+        <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+

@@ -1,0 +1,14 @@
+<!-- Tab nav bar -->
+<!-- The tab only shows when there is no ongoing training -->
+<mat-tab-group *ngIf="!ongoingTraining">
+    <mat-tab label="New Exercise">
+      <!-- Between tabs, put what should be loaded when tab is clicked. -->
+      <app-new-training></app-new-training>
+    </mat-tab>
+    <mat-tab label="Past Exercises">
+      <app-past-trainings></app-past-trainings>
+    </mat-tab>
+</mat-tab-group>
+
+<!-- Show the current training if there is an ongoing training -->
+<app-current-training *ngIf="ongoingTraining"></app-current-training>

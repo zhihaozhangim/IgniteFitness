@@ -1,0 +1,44 @@
+<!-- fxLayout: defualt is row. fxLayoutAlign="center" -> center horizontally -->
+<section class="new-training" fxLayout fxLayoutAlign="center">
+
+  <!-- A template driven approach to submit data in form. -->
+  <!-- #f="ngForm: Store the form in a local reference. -->
+  <form (ngSubmit)="onStartTraining(f)" #f="ngForm">
+
+    <!-- Use a card to display -->
+    <!-- In small device, use the full screen -->
+    <mat-card  fxFlex.xs="100%" fxFlex="400px">
+        <!-- center -->
+        <mat-card-title fxLayoutAlign="center">Time to start a workout!</mat-card-title>
+        <mat-card-content fxLayoutAlign="center">
+
+          <!-- Below is dragdown menu of new training -->
+            <mat-form-field *ngIf="!isLoading && exercises">
+
+                <!-- ngModel: to access the field in the form object in the ts file. -->
+                <mat-select placeholder="Choose Exercise" ngModel name="exercise" required>
+
+                  <!-- populate all available exercises here -->
+                  <mat-option  *ngFor="let exercise of exercises" [value]="exercise.id">
+                    {{ exercise.name }}
+                  </mat-option>
+
+                </mat-select>
+            </mat-form-field>
+
+            <!-- Show the spinner if the available exercises are loading. -->
+            <mat-spinner *ngIf="isLoading"></mat-spinner>
+        </mat-card-content>
+
+        <!-- center -->
+        <mat-card-actions fxLayoutAlign="center" *ngIf="!isLoading">
+
+          <!-- Can start only when the form is valid. -->
+          <button *ngIf="exercises" type="submit" mat-button [disabled]="f.invalid">Start</button>
+
+          <!-- If fetch available exercises failed, fetch again by clicking the button. -->
+          <button *ngIf="!exercises" type="button" mat-button (onclick="fetchExercises()")>Fetch Again</button>
+        </mat-card-actions>
+    </mat-card>
+  </form>
+</section>

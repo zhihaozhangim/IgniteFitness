@@ -1,0 +1,12 @@
+<!-- position from top to bottom -->
+<!-- center horizontally and vertically -->
+<section  class="current-training" fxLayout="column" fxLayoutAlign="center center">
+
+  <!-- user determinate mode because we want to set a specific time limit for every training
+       use indeterminate mode when we have no idea about the time limit -->
+  <!-- [value] determines the progress of the spinner -->
+  <mat-progress-spinner mode="determinate" [value]="progress"></mat-progress-spinner>
+  <h1>{{ progress }}%</h1>
+  <p>Keep on going, you can do it!</p>
+  <button mat-raised-button color="accent" (click)="onStop()">Stop</button>
+</section>

@@ -1,0 +1,73 @@
+<section class="signup-form">
+    <!-- fxLayout = "column" -> from top to bottom layout -->
+    <!-- fxLayoutAlign = "center center" -> first: main axis, second: cross axis  -->
+    <!-- #f="ngForm" -> give us a local reference to the form object. The name of #f depends on you -->
+    <!-- fxLayoutGap will set a space between every field of the form -->
+    <form fxLayout="column" fxLayoutAlign="center center"  fxLayoutGap="10px" #f="ngForm" (ngSubmit)="onSubmit(f)">
+      <!-- wrapper to use matInput -->
+      <!-- ngModule: Creates a FormControl instance from a domain model and binds it to a form control element.
+           Make angular be aware of the element. -->
+      <!-- matInput: from angular materials, for button style and floating effect -->
+      <mat-form-field>
+        <!-- mat-error: part of mat-form-field  -->
+        <!-- #emailInput: bind the input to a local reference #emailInput -->
+        <input
+          type="email"
+          matInput
+          placeholder="Your Email"
+          ngModel
+          name="email"
+          email
+          required
+          #emailInput="ngModel">
+          <mat-error *ngIf="!emailInput.hasError('required')">E-Mail is invalid</mat-error>
+          <mat-error *ngIf="emailInput.hasError('required')">Field must not be empty</mat-error>
+      </mat-form-field>
+      <mat-form-field hintLabel="Should be at least 6 characters long">
+          <!-- #pwInput: bind the password to a local reference pwInput -->
+          <input
+            type="password"
+            matInput
+            placeholder="Your Password"
+            ngModel
+            name="password"
+            required
+            minlength="6"
+            #pwInput="ngModel">
+            <!-- mat-hint: comes from mat-form-field, no need to import
+                 align="end" -> start from right -->
+            <mat-hint align="end">{{ pwInput.value?.length }} / 6</mat-hint>
+            <mat-error>Has to be at least 6 characters long</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <!-- [matDatepicker]="picker" -> a directive comes from datepicker module
+                tell the datepicker to put the date in this place.(connected by the local reference #picker)   -->
+          <!-- directive [max] limit the age of the user to be at least 18 years old -->
+          <input
+            matInput
+            placeholder="Your Birthdate"
+            [matDatepicker]="picker"
+            [max]="maxDate"
+            ngModel
+            name="birthdate"
+            required>
+          <!-- The button that opens the datepicket -->
+          <!-- [for] is to connect the toggle to the datepicker -->
+          <!-- matSuffix -> used to put the toggle at the end of the input -->
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"></mat-datepicker-toggle>
+          <!-- The actual date picket with a local reference called #picker -->
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <!-- checkbox -->
+        <mat-checkbox ngModel name="agree" required color="primary">Agree to Terms and Conditions.</mat-checkbox>
+        <!-- [disabled]="f.invalid" means the submit button will be invalid until all fields in the form have been filled -->
+        <!-- Show the button if it is not loading -->
+        <button  *ngIf="!isLoading" type="submit" mat-raised-button color="primary" [disabled]="f.invalid">Submit</button>
+        <!-- Show the spinner if it is loading -->
+        <mat-spinner *ngIf="isLoading"></mat-spinner>
+    </form>
+</section>
+
+
